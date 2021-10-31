@@ -1,0 +1,4 @@
+brave.exe
+chrome.exe
+WINWORD.exe
+MinecraftLauncher.exe

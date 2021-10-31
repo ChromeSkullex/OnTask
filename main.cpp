@@ -701,16 +701,16 @@ public:
 
     void alarm()
     {
-        
         int numprogs = blacklistedPrograms.size();
-            for(int i = 0; i < numprogs; i++)
-            {
-                //wstring wide_string = wstring(blacklistedPrograms[i].begin(), blacklistedPrograms[i].end());
-                //const char *thing = blacklistedPrograms[i].c_str();
-                cout << "closed: " << blacklistedPrograms[i] << endl;
-                killProcessByName(blacklistedPrograms[i]);
-            }
+        for (int i = 0; i < numprogs; i++)
+        {
+            //wstring wide_string = wstring(blacklistedPrograms[i].begin(), blacklistedPrograms[i].end());
+            //const char *thing = blacklistedPrograms[i].c_str();
+            cout << "closed: " << blacklistedPrograms[i] << endl;
+            killProcessByName(blacklistedPrograms[i]);
+        }
 
+        
         
     }
 

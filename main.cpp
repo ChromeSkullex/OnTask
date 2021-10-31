@@ -12,7 +12,7 @@
 #include <process.h>
 #include <Tlhelp32.h>
 #include <winbase.h>
-
+#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
 
 using namespace std;
 const int EXIT_NUM = 0;
@@ -90,8 +90,10 @@ public:
 
             getTimeDue(timeDue);
 
+            cout << "Hello4" << endl;
         }
 
+        cout << "Hello3" << endl;
     }
     void getTimeDue(vector<int> timeDue)
     {
@@ -573,7 +575,7 @@ public:
     {
 
         string listName;
-        bool loop;
+        bool loop = false;
         int length;
 
         // Add Task name
@@ -634,8 +636,13 @@ public:
             if(taskTimed == "Y" || taskTimed == "YES")
             {
                 task.isTimed(true);
+                cout << "Hello1" << endl;
                 task.getRemainingTime();
+
+                cout << "Hello2" << endl;
                 alarm();
+
+                cout << "Hello3" << endl;
                 break;
             }
             else if(taskTimed == "N" || taskTimed == "NO")
@@ -699,6 +706,7 @@ public:
 
     void alarm()
     {
+        /*
         int numprogs = blacklistedPrograms.size();
         while(true)
         {
@@ -709,7 +717,7 @@ public:
                 killProcessByName(thing);
             }
 
-        }
+        }*/
     }
 
     // Only displays text about the main menu
@@ -911,7 +919,7 @@ public:
     }  // End of printCompletedTasks
 
     void killProcessByName(const char* filename)
-    {
+    {/*
         HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, 0);
         PROCESSENTRY32 pEntry;
         pEntry.dwSize = sizeof (pEntry);
@@ -930,7 +938,7 @@ public:
             }
             hRes = Process32Next(hSnapShot, &pEntry);
         }
-        CloseHandle(hSnapShot);
+        CloseHandle(hSnapShot);*/
     }
 
 

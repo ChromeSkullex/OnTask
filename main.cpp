@@ -667,8 +667,7 @@ public:
                 displayAll();
                 cout << "\nPossible Lists, please select one:\n"<<endl;
                 cin.clear();
-                cin.ignore();
-                cin >> listName;
+                getline(cin, listName);
 
                 // For loop to run through all lists
                 for(unsigned int i = 0; i < allLists.size(); i++)

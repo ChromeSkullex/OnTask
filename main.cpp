@@ -18,24 +18,10 @@ using namespace std;
 const int EXIT_NUM = 0;
 
 /*
-    TODO:
-    - Have users create tasks
-    - List class
-        -Order of tasks
-        -Displays tasks for the day
-        -Displays date
-    - Task classes
-        -Timer
-          -Does it have a timer? 0 - no, 1- ye
-        -Restrictions
-          -Tells user that they're on restricted app
-
-      1:35p
-      TODO:
-        Display the tasks under a specified list
-        Let user choose what list they want to create the task under
-        Debug timer
-        implement timer into task
+   TODO: 
+    Have the process prevent to open while timed task is still running
+    Create a gui 
+    Unit Testing
 
 
 */

@@ -90,10 +90,8 @@ public:
 
             getTimeDue(timeDue);
 
-            cout << "Hello4" << endl;
         }
 
-        cout << "Hello3" << endl;
     }
     void getTimeDue(vector<int> timeDue)
     {
@@ -215,7 +213,7 @@ public:
             cout << "\n\t" << allTasks.at(i).getTaskInfo() << "\n";
 
             if( allTasks.at(i).ifTimed()== true){
-                cout << "\tThis task is timed\nYou have IDK INSERT TIME\n";
+                cout << "\tThis task is timed\n";
             }
 
             else{
@@ -636,13 +634,10 @@ public:
             if(taskTimed == "Y" || taskTimed == "YES")
             {
                 task.isTimed(true);
-                cout << "Hello1" << endl;
                 task.getRemainingTime();
 
-                cout << "Hello2" << endl;
                 alarm();
 
-                cout << "Hello3" << endl;
                 break;
             }
             else if(taskTimed == "N" || taskTimed == "NO")
@@ -706,24 +701,24 @@ public:
 
     void alarm()
     {
-        /*
+        
         int numprogs = blacklistedPrograms.size();
-        while(true)
-        {
             for(int i = 0; i < numprogs; i++)
             {
-                const char *thing = blacklistedPrograms[i].c_str();
-                cout << "closed: " << thing << endl;
-                killProcessByName(thing);
+                //wstring wide_string = wstring(blacklistedPrograms[i].begin(), blacklistedPrograms[i].end());
+                //const char *thing = blacklistedPrograms[i].c_str();
+                cout << "closed: " << blacklistedPrograms[i] << endl;
+                killProcessByName(blacklistedPrograms[i]);
             }
 
-        }*/
+        
     }
 
     // Only displays text about the main menu
     int mainMenu()
     {
         int inputNum;
+        cout << endl;
         cout << "1. Create Tasks" << endl;
         cout << "2. Create List" <<endl;
         cout << "3. Display Current Tasks" << endl;
@@ -917,19 +912,42 @@ public:
         completedTasks.printTasks();
         return;
     }  // End of printCompletedTasks
-
-    void killProcessByName(const char* filename)
-    {/*
-        HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, 0);
+    /*
+    void kill(string filename) {
+        // Sazhelle implementation
+        HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, NULL);
         PROCESSENTRY32 pEntry;
-        pEntry.dwSize = sizeof (pEntry);
+        pEntry.dwSize = sizeof(pEntry);
+        BOOL hRes = Process32First(hSnapShot, &pEntry);
+        while (hRes) {
+            if (strcmp((const char*)pEntry.szExeFile, filename.c_str())) {
+                HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, 0, (DWORD)pEntry.th32ProcessID);
+                if (hProcess != NULL) {
+                    TerminateProcess(hProcess, 9);
+                    CloseHandle(hProcess);
+                }
+            }
+            hRes = Process32Next(hSnapShot, &pEntry);
+        }
+        CloseHandle(hSnapShot);
+    }
+    */
+
+    void killProcessByName(string filename)
+    {
+        string temp = "taskkill /f /im " + filename;
+        system(temp.c_str());
+        /*
+        HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, NULL);
+        PROCESSENTRY32 pEntry;
+        pEntry.dwSize = sizeof(pEntry);
         BOOL hRes = Process32First(hSnapShot, &pEntry);
         while (hRes)
         {
-            if (strcmp(pEntry.szExeFile, filename) == 0)
+            if (strcmp((const char*)pEntry.szExeFile, filename) == 0)
             {
                 HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, 0,
-                                              (DWORD) pEntry.th32ProcessID);
+                    (DWORD)pEntry.th32ProcessID);
                 if (hProcess != NULL)
                 {
                     TerminateProcess(hProcess, 9);
@@ -940,7 +958,7 @@ public:
         }
         CloseHandle(hSnapShot);*/
     }
-
+    
 
 private:
     vector <List> allLists; // Starts from the first date, then makes a second one from the next day and bring previous tasks to the next.
